@@ -37,6 +37,15 @@ class Chunk():
             ]
         return "".join(surface_list)
 
+    def _get_pos_list(self) -> List[str]:
+        return [e.pos for e in self.morphs]
+
+    def contains_noun(self) -> bool:
+        return "名詞" in self._get_pos_list()
+
+    def contains_verb(self) -> bool:
+        return "動詞" in self._get_pos_list()
+
     def __str__(self):
         return "Sentence: {}, dst: {}, srcs: {}".format(
             self.morph_to_str(), self.dst, self.srcs
