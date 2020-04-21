@@ -26,10 +26,16 @@ class Chunk():
     def add_src(self, src: int):
         self.srcs.append(src)
 
-    def morph_to_str(self) -> str:
-        return "".join([
-            e.surface for e in self.morphs
-        ])
+    def morph_to_str(self, skip_fig: bool=False) -> str:
+        if skip_fig:
+            surface_list = [
+                e.surface for e in self.morphs if e.pos != "記号"
+            ]
+        else:
+            surface_list = [
+                e.surface for e in self.morphs
+            ]
+        return "".join(surface_list)
 
     def __str__(self):
         return "Sentence: {}, dst: {}, srcs: {}".format(
