@@ -13,5 +13,6 @@ NLP100 2020版のdeflat的回答
 | python | 3.7.6(Anaconda 2019.03) |
 | mecab | 0.996 |
 | Cabocha | 0.69 |
+| GraphVis | 2.38 |
 
 その他Python内で利用しているライブラリ等の情報は、同梱の"anaconda_env_windows.txt"参照。
