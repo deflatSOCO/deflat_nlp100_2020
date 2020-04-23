@@ -11,6 +11,12 @@ NLP100 2020版のdeflat的回答
 |:- | -:|
 | OS | Windows10 home ver.1903 |
 | python | 3.7.6(Anaconda 2019.03) |
+| pythonコマンド実行 | Windows Powershell(5.1.18362.752) |
+| UNIXコマンド実行 | Git bash(version 2.26.2.windows.1) |
+
+### OSSバージョン
+| OSS | バージョン |
+|:- | -:|
 | mecab | 0.996 |
 | Cabocha | 0.69 |
 | GraphVis | 2.38 |

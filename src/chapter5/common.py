@@ -40,11 +40,29 @@ class Chunk():
     def _get_pos_list(self) -> List[str]:
         return [e.pos for e in self.morphs]
 
+    def _contains_pos(self, pos:str) ->bool:
+        return pos in self._get_pos_list()
+
     def contains_noun(self) -> bool:
-        return "名詞" in self._get_pos_list()
+        return self._contains_pos("名詞")
 
     def contains_verb(self) -> bool:
-        return "動詞" in self._get_pos_list()
+        return self._contains_pos("動詞")
+
+    def contains_pp(self) -> bool:
+        return self._contains_pos("助詞")
+
+    def get_leftmost_verb(self) -> str:
+        for m in self.morphs:
+            if m.pos == "動詞":
+                return m.base
+        return None
+    
+    def get_pp(self) -> str:
+        for m in self.morphs:
+            if m.pos == "助詞":
+                return m.surface
+        return None        
 
     def __str__(self):
         return "Sentence: {}, dst: {}, srcs: {}".format(
