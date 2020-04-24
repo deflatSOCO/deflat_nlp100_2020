@@ -52,6 +52,15 @@ class Chunk():
     def contains_pp(self) -> bool:
         return self.get_pp() is not None
 
+    def contains_sahen_wo(self) -> bool:
+        flag = (len(self.morphs) == 2) and \
+            self.morphs[0].pos == "名詞" and \
+            self.morphs[0].pos1 == "サ変接続" and \
+            self.morphs[1].pos == "助詞" and \
+            self.morphs[1].surface == "を"
+        return flag
+
+
     def get_leftmost_verb(self) -> str:
         for m in self.morphs:
             if m.pos == "動詞":
