@@ -36,6 +36,19 @@ class Chunk():
                 e.surface for e in self.morphs
             ]
         return "".join(surface_list)
+    
+    def morph_to_masked_str(self, replace_str:str, skip_fig:bool=False) -> str:
+        ret = ""
+        replaced = False
+        for m in self.morphs:
+            if m.pos == "記号":
+                continue
+            elif m.pos == "名詞" and not replaced:
+                replaced = True
+                ret += replace_str
+            else:
+                ret += m.surface
+        return ret
 
     def _get_pos_list(self) -> List[str]:
         return [e.pos for e in self.morphs]
