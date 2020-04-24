@@ -32,7 +32,7 @@ def nlp_46():
                 if chunk.contains_verb():
                     verb_dict[i] = chunk.get_leftmost_verb()
                 if chunk.contains_pp():
-                    pp_list[chunk.dst].append([chunk.get_pp(), chunk.morph_to_str()])
+                    pp_list[chunk.dst].append([chunk.get_pp(), chunk.morph_to_str(skip_fig=True)])
             for k in verb_dict.keys():
                 if pp_list[k]:
                     sorted_list = sorted(pp_list[k], key=lambda x: x[0])

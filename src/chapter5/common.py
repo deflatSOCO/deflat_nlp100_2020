@@ -50,7 +50,7 @@ class Chunk():
         return self._contains_pos("動詞")
 
     def contains_pp(self) -> bool:
-        return self._contains_pos("助詞")
+        return self.get_pp() is not None
 
     def get_leftmost_verb(self) -> str:
         for m in self.morphs:
@@ -59,10 +59,16 @@ class Chunk():
         return None
     
     def get_pp(self) -> str:
-        for m in self.morphs:
+        ret = None
+        for m in self.morphs[::-1]:
             if m.pos == "助詞":
-                return m.surface
-        return None        
+                ret = m.surface
+                break
+            elif m.pos == "記号":
+                continue
+            else:
+                break
+        return ret      
 
     def __str__(self):
         return "Sentence: {}, dst: {}, srcs: {}".format(
