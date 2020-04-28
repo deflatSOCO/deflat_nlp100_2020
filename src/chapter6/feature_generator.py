@@ -16,12 +16,15 @@ class FeatureGenerator():
 
     def transform(self, word_series: pd.Series) -> Tuple[np.array, List[str]]:
         raise NotImplementedError
-        
+
 
 class WordCount(FeatureGenerator):
     
     def __init__(self):
-        self.vectorizer = CountVectorizer(analyzer=lambda x:x)
+        self.vectorizer = CountVectorizer(analyzer=self._selfret)
+
+    def _selfret(self,x):
+        return x
 
     def fit(self, word_series: pd.Series):
         words = word_series.tolist()
@@ -37,10 +40,13 @@ class TfIdf(FeatureGenerator):
     
     def __init__(self, min_df=0.0, max_df=1.0):
         self.vectorizer = TfidfVectorizer(
-            analyzer=lambda x: x,
+            analyzer=self._selfret,
             min_df=min_df,
             max_df=max_df
         )
+
+    def _selfret(self,x):
+        return x
 
     def fit(self, word_series: pd.Series):
         words = word_series.tolist()

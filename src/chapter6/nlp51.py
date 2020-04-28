@@ -4,6 +4,7 @@ import re
 import pandas as pd
 import numpy as np
 from typing import List, Tuple
+import pickle
 
 from feature_generator import *
 from wordlist_generator import WordListGenerator
@@ -53,6 +54,9 @@ def nlp_51():
     )
     title_vectorizer = TfIdf(min_df=0.001, max_df=0.9)
     title_vectorizer.fit(train_data["TITLE"])
+
+    with open(os.path.join(result_dir_path,"vectorizer.pkl"),"wb") as f:
+        pickle.dump(title_vectorizer, f)
 
     train_np, train_w = generate_np(train_data, title_vectorizer)
     valid_np, valid_w = generate_np(valid_data, title_vectorizer)
