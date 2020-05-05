@@ -47,7 +47,13 @@ def nlp_74():
         loss = loss_func(output, y_train)
         loss.backward()
         optimizer.step()
-    
+
+    print("Training data:")
+    test_out = model(X_train)
+    _, y_pred = torch.max(test_out.data, 1)
+    print(sum(y_train==y_pred).item() / y_train.size()[0])
+
+    print("Test data:")
     test_out = model(X_test)
     _, y_pred = torch.max(test_out.data, 1)
     print(sum(y_test==y_pred).item() / y_test.size()[0])
